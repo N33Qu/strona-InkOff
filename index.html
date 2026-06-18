@@ -1,0 +1,824 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8" />
+<title>InkOff · Soft Healing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="v3-soft.css?v=20260618b" />
+<link rel="icon" type="image/png" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/favicon.png" />
+</head>
+<body data-lang="pl" data-palette="gold" data-mode="light" data-display="sans" data-legibility="frost">
+
+<!-- Social icon sprite (theme-colored via currentColor) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ic-ig" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+    <rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect>
+    <circle cx="12" cy="12" r="4"></circle>
+    <circle cx="17.2" cy="6.8" r="1.15" fill="currentColor" stroke="none"></circle>
+  </symbol>
+  <symbol id="ic-fb" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M13.5 21v-7h2.4l.36-2.8h-2.76V9.34c0-.81.22-1.36 1.38-1.36h1.48V5.47c-.26-.03-1.14-.11-2.16-.11-2.14 0-3.6 1.31-3.6 3.71v2.13H8.06V14h2.52v7h2.92z"></path>
+  </symbol>
+  <symbol id="ic-booksy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="3.5" y="5" width="17" height="15.5" rx="3"></rect>
+    <path d="M3.5 9.5h17"></path>
+    <path d="M8 3v3.4M16 3v3.4"></path>
+    <path d="M8.7 14.6l2 2 3.8-3.8"></path>
+  </symbol>
+</svg>
+
+<!-- HAND BG — scroll-driven crossfade: tattooed arm dissolves to clean skin -->
+<div class="handbg" aria-hidden="true">
+  <img class="handbg-layer handbg-before" src="assets/hero-before.jpg" alt="" />
+  <img class="handbg-layer handbg-after" src="assets/hero-after.jpg" alt="" />
+</div>
+
+<!-- scroll hint, fades after movement -->
+<div class="scroll-hint" id="hint">
+  <span data-pl>przewiń · tatuaż znika</span><span data-en>scroll · the tattoo fades</span>
+  <div class="line"></div>
+</div>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#" aria-label="InkOff.pl"><img class="brand-logo" src="assets/logo-gold.png" alt="InkOff.pl — laserowe usuwanie tatuażu i PMU" /></a>
+    <div class="nav-links">
+      <a href="#about"><span data-pl>O studio</span><span data-en>About</span></a>
+      <a href="#proc"><span data-pl>Proces</span><span data-en>Process</span></a>
+      <a href="#gal"><span data-pl>Galeria</span><span data-en>Gallery</span></a>
+      <a href="#cen"><span data-pl>Cennik</span><span data-en>Pricing</span></a>
+      <a href="#kon"><span data-pl>Kontakt</span><span data-en>Contact</span></a>
+    </div>
+    <div class="nav-right">
+      <div class="lang"><button class="on" data-set="pl">PL</button><button data-set="en">EN</button></div>
+      <a class="btn accent" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Umów wizytę</span><span data-en>Book</span><span class="arr">→</span></a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <span class="badge"><span class="dot"></span><span data-pl>Nowy rozdział · Lublin</span><span data-en>A new chapter · Lublin</span></span>
+      <h1>
+        <span class="tw" data-tw data-tw-load data-pl>Twoja skóra opowie </span><span class="tw" data-tw data-tw-load data-en>Your skin will tell a </span>
+        <span class="tw accent" data-tw data-tw-load data-delay="900" data-pl>nową historię.</span><span class="tw accent" data-tw data-tw-load data-delay="900" data-en>new story.</span>
+      </h1>
+      <p class="lede fadein">
+        <span data-pl>Bezpieczne, etapowe usuwanie tatuaży laserem pikosekundowym. <em>Bez pośpiechu, bez oceniania</em> — w takim tempie, w jakim Ty potrzebujesz.</span>
+        <span data-en>Safe, gradual tattoo removal with picosecond laser. <em>No rush, no judgment</em> — at the pace your skin needs.</span>
+      </p>
+      <div class="hero-cta fadein">
+        <a class="btn accent" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Zarezerwuj konsultację</span><span data-en>Book a consult</span><span class="arr">→</span></a>
+        <a class="btn outline" href="#proc"><span data-pl>Jak to działa</span><span data-en>How it works</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero-stats">
+  <div class="hero-stats-inner">
+    <div class="cell"><span data-pl>Ocena</span><span data-en>Rating</span><strong>4.9 / 5.0</strong></div>
+    <div class="cell"><span data-pl>Sesji</span><span data-en>Sessions</span><strong>2 400+</strong></div>
+    <div class="cell"><span data-pl>Konsultacja</span><span data-en>Consult</span><strong>0 PLN</strong></div>
+    <div class="cell"><span data-pl>Pico-Q · pikosekundowy</span><span data-en>Pico-Q · picosecond</span><strong>2026</strong></div>
+  </div>
+</section>
+
+<!-- INTRO — over hand, mask completes here -->
+<section class="intro">
+  <div class="intro-inner">
+    <div class="intro-label tw" data-tw>— <span data-pl>czytaj jak list</span><span data-en>read it as a letter</span></div>
+    <p class="intro-text tw" data-tw data-pl>Kiedy zrobiłaś ten tatuaż, na pewno znaczył coś ważnego. Imię, datę, wiarę, że nigdy nie zmienisz zdania. <span class="accent">Zmieniłaś — i to jest w porządku.</span> Skóra ma prawo do drugich szans, tak samo jak Ty.</p>
+    <p class="intro-text tw" data-tw data-en>When you got this tattoo, it surely meant something. A name, a date, a belief you'd never change your mind. <span class="accent">You did — and that's fine.</span> Your skin deserves second chances as much as you do.</p>
+  </div>
+</section>
+
+<!-- CURTAIN — content sits on solid bg from here -->
+<div class="curtain">
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="about-grid">
+    <div class="about-frame fadein">
+      <div class="ph"><img src="assets/owner-portrait.jpg" alt="Specjalista InkOff w studio laserowego usuwania tatuaży w Lublinie" loading="lazy" /></div>
+      <div class="stamp">STUDIO · LUBLIN</div>
+    </div>
+    <div class="about-text">
+      <div class="small-caps fadein" style="color:var(--accent);margin-bottom:14px">— <span data-pl>O studio</span><span data-en>About</span></div>
+      <h2 class="tw" data-tw data-pl>Spokojne miejsce<br>na <span class="accent">trudną decyzję</span>.</h2>
+      <h2 class="tw" data-tw data-en>A calm place<br>for a <span class="accent">hard choice</span>.</h2>
+      <p class="fadein"><span data-pl>InkOff to studio laserowego usuwania tatuaży i PMU w Lublinie. Pracujemy z laserem pikosekundowym <em>Pico-Q</em> — najnowszej generacji, która rozbija pigment na cząsteczki tak małe, że ciało samo je usuwa.</span><span data-en>InkOff is a laser tattoo &amp; PMU removal studio in Lublin. We work with the <em>Pico-Q</em> picosecond laser — the latest generation, breaking pigment into particles fine enough for your body to remove on its own.</span></p>
+      <p class="fadein"><span data-pl>Każdy zabieg prowadzi osobiście <strong>Krzysztof Łuckiewicz</strong> — ta sama osoba na konsultacji, przy laserze i przy kontroli. Nie zaczynamy od ceny ani od planu. Zaczynamy od rozmowy.</span><span data-en>Every treatment is performed personally by <strong>Krzysztof Łuckiewicz</strong> — the same person at the consult, at the laser and at the check-up. We don't start with price or a plan. We start with a conversation.</span></p>
+      <div class="about-stats fadein">
+        <div class="stat"><strong>2019</strong><span data-pl>otwarcie</span><span data-en>opened</span></div>
+        <div class="stat"><strong>2 400+</strong><span data-pl>sesji</span><span data-en>sessions</span></div>
+        <div class="stat"><strong>96%</strong><span data-pl>pełnych usunięć</span><span data-en>full removals</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section bg2" id="proc">
+  <div class="section-head">
+    <span class="small-caps">02 · <span data-pl>Proces</span><span data-en>Process</span></span>
+    <h2 class="tw" data-tw data-pl>Cztery kroki.<br><span class="accent">Zero</span> niespodzianek.</h2>
+    <h2 class="tw" data-tw data-en>Four steps.<br><span class="accent">Zero</span> surprises.</h2>
+    <p class="fadein"><span data-pl>Każda osoba dostaje pisemny plan. Płacisz dopiero po pierwszej sesji.</span><span data-en>Every client gets a written plan. You pay only after the first session.</span></p>
+  </div>
+  <div class="proc-grid">
+    <div class="proc-card fadein">
+      <div class="n">i.</div>
+      <h4><span data-pl>Konsultacja</span><span data-en>Consultation</span></h4>
+      <p><span data-pl>30 minut przy herbacie. Ocena pigmentu, fototypu skóry, historii tatuażu. Test plamki na małym fragmencie. Bez zobowiązań i opłat.</span><span data-en>30 minutes over tea. Pigment, skin phototype, tattoo history. A small patch test. No commitment, no fee.</span></p>
+      <div class="when">~ 30 MIN · 0 PLN</div>
+    </div>
+    <div class="proc-card fadein">
+      <div class="n">ii.</div>
+      <h4><span data-pl>Plan</span><span data-en>Plan</span></h4>
+      <p><span data-pl>Pisemny dokument: ile sesji, jakie odstępy, jaki koszt. Zabierz go do domu, wróć kiedy będziesz gotowa.</span><span data-en>A written brief: sessions, intervals, total cost. Take it home. Come back when ready.</span></p>
+      <div class="when"><span data-pl>BEZ NACISKU</span><span data-en>NO PUSH</span></div>
+    </div>
+    <div class="proc-card fadein">
+      <div class="n">iii.</div>
+      <h4><span data-pl>Sesje</span><span data-en>Sessions</span></h4>
+      <p><span data-pl>Pikosekundowy Pico-Q. 15–45 min. Po sesji — zimne okłady, maść, czas. Następna sesja za 6–8 tygodni.</span><span data-en>Pico-Q picosecond laser. 15–45 min. After — cold compress, ointment, time. Next in 6–8 weeks.</span></p>
+      <div class="when">15–45 MIN · 6–8 <span data-pl>TYG.</span><span data-en>WKS.</span></div>
+    </div>
+    <div class="proc-card fadein">
+      <div class="n">iv.</div>
+      <h4><span data-pl>Opieka</span><span data-en>Aftercare</span></h4>
+      <p><span data-pl>Indywidualna instrukcja, zdjęcia kontrolne, kontakt na WhatsApp. Bez głupich pytań.</span><span data-en>Personalised instructions, check-up photos, WhatsApp line. No dumb questions.</span></p>
+      <div class="when">∞ · WHATSAPP</div>
+    </div>
+  </div>
+  <div class="studio-strip fadein">
+    <figure class="big"><img src="assets/process-laser.jpg" alt="Specjalista InkOff przy laserze pikosekundowym" loading="lazy" /><figcaption>Pico-Q · <span data-pl>laser</span><span data-en>laser</span></figcaption></figure>
+    <figure><img src="assets/process-action.jpg" alt="Zabieg laserowego usuwania tatuażu w trakcie" loading="lazy" /><figcaption><span data-pl>zabieg</span><span data-en>session</span></figcaption></figure>
+    <figure><img src="assets/process-room.jpg" alt="Gabinet zabiegowy InkOff" loading="lazy" /><figcaption><span data-pl>gabinet</span><span data-en>room</span></figcaption></figure>
+    <figure><img src="assets/process-closeup.jpg" alt="Głowica lasera podczas usuwania tatuażu na przedramieniu" loading="lazy" /><figcaption>1:1 · <span data-pl>precyzja</span><span data-en>precision</span></figcaption></figure>
+    <figure><img src="assets/owner-portrait.jpg" alt="Krzysztof Łuckiewicz — specjalista InkOff" loading="lazy" /><figcaption>Krzysztof Łuckiewicz</figcaption></figure>
+  </div>
+</section>
+
+<!-- LIVE REMOVAL VIDEO -->
+<section class="section live" id="live">
+  <div class="live-wrap fadein">
+    <div class="live-video">
+      <span class="live-badge"><span data-pl>na żywo</span><span data-en>live</span></span>
+      <video class="live-slide is-active" src="assets/removal.mp4" poster="assets/removal-poster.jpg" muted loop playsinline autoplay preload="metadata"></video>
+      <video class="live-slide" src="assets/removal-2.mp4" poster="assets/removal-2-poster.jpg" muted loop playsinline preload="none"></video>
+      <button class="live-arrow prev" aria-label="Poprzedni film">‹</button>
+      <button class="live-arrow next" aria-label="Następny film">›</button>
+      <div class="live-nav">
+        <button class="is-active" aria-label="Film 1"></button>
+        <button aria-label="Film 2"></button>
+      </div>
+    </div>
+    <div class="live-text">
+      <div class="small-caps" style="color:var(--accent);margin-bottom:14px">— <span data-pl>Zobacz, jak to wygląda</span><span data-en>See how it looks</span></div>
+      <h2 class="tw" data-tw data-pl>Laser w <span class="accent">akcji</span>.</h2>
+      <h2 class="tw" data-tw data-en>The laser in <span class="accent">action</span>.</h2>
+      <p><span data-pl>Krótki, kontrolowany impuls rozbija tusz pod skórą. Zabieg trwa od kilkunastu minut, a głowicę chłodzi powietrze, żeby skóra wokół pozostała bezpieczna.</span><span data-en>A short, controlled pulse shatters the ink beneath the skin. A session takes minutes, and the handpiece is air-cooled so the surrounding skin stays safe.</span></p>
+      <ul class="live-points">
+        <li><span data-pl>Okulary ochronne dla Ciebie i specjalisty — zawsze.</span><span data-en>Protective eyewear for you and the specialist — always.</span></li>
+        <li><span data-pl>Pełna sterylność: rękawiczki, jednorazowe podkłady, dezynfekcja.</span><span data-en>Full sterility: gloves, single-use covers, disinfection.</span></li>
+        <li><span data-pl>Zimne okłady i maść od razu po zabiegu.</span><span data-en>Cold compress and ointment right after.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="gal">
+  <div class="section-head">
+    <span class="small-caps">03 · <span data-pl>Galeria</span><span data-en>Gallery</span></span>
+    <h2 class="tw" data-tw data-pl>Przed i <span class="accent">po</span>.<br>Najedź — zobacz.</h2>
+    <h2 class="tw" data-tw data-en>Before and <span class="accent">after</span>.<br>Hover to see.</h2>
+    <p class="fadein"><span data-pl>Każde zdjęcie z dokładnym opisem: ile sesji, jaki tatuaż, jaki czas.</span><span data-en>Each photo with full notes: sessions, type, time elapsed.</span></p>
+  </div>
+  <div class="gal-grid">
+    <article class="gal-card fadein">
+      <div class="frm has-photo">
+        <div class="before"><img src="assets/before-1.jpg" alt="Przedramię z tatuażami przed usuwaniem" loading="lazy" /></div>
+        <div class="after"><img src="assets/after-1.jpg" alt="Czysta skóra po laserowym usunięciu tatuażu" loading="lazy" /></div>
+      </div>
+      <div class="frm-labels">
+        <span class="lab on-before"><span data-pl>PRZED</span><span data-en>BEFORE</span></span>
+        <span class="lab on-after">PO · 6 <span data-pl>SESJI</span><span data-en>SESSIONS</span></span>
+      </div>
+      <div class="meta"><span class="ttl"><span data-pl>Imię</span><span data-en>Name</span></span><span class="num">CASE / 03</span></div>
+      <div class="data">
+        <span><strong>6</strong><span data-pl>sesji</span><span data-en>sessions</span></span>
+        <span><strong>9 mc.</strong><span data-pl>czas</span><span data-en>time</span></span>
+        <span><strong>nadgarstek</strong><span data-pl>miejsce</span><span data-en>area</span></span>
+      </div>
+    </article>
+    <article class="gal-card fadein">
+      <div class="frm has-photo">
+        <div class="before"><img src="assets/gal-tribal-before.jpg" alt="Tatuaż tribal na ramieniu przed usuwaniem" loading="lazy" /></div>
+        <div class="after"><img src="assets/gal-tribal-after.jpg" alt="Rozjaśniony tatuaż tribal po sesjach laserowych" loading="lazy" /></div>
+      </div>
+      <div class="frm-labels">
+        <span class="lab on-before"><span data-pl>PRZED</span><span data-en>BEFORE</span></span>
+        <span class="lab on-after">PO · 5 <span data-pl>SESJI</span><span data-en>SESSIONS</span></span>
+      </div>
+      <div class="meta"><span class="ttl"><span data-pl>Tribal</span><span data-en>Tribal</span></span><span class="num">CASE / 07</span></div>
+      <div class="data">
+        <span><strong>5</strong><span data-pl>sesji</span><span data-en>sessions</span></span>
+        <span><strong>10 mc.</strong><span data-pl>czas</span><span data-en>time</span></span>
+        <span><strong><span data-pl>ramię</span><span data-en>arm</span></strong><span data-pl>miejsce</span><span data-en>area</span></span>
+      </div>
+    </article>
+    <article class="gal-card fadein">
+      <div class="frm has-photo">
+        <div class="before"><img src="assets/gal-dream-after.jpg" alt="Tatuaż łapacz snów na udzie przed usuwaniem" loading="lazy" /></div>
+        <div class="after"><img src="assets/ig-faded.jpg" alt="Tatuaż łapacz snów rozjaśniony niemal do zera po sesjach laserowych" loading="lazy" /></div>
+      </div>
+      <div class="frm-labels">
+        <span class="lab on-before"><span data-pl>PRZED</span><span data-en>BEFORE</span></span>
+        <span class="lab on-after">PO · 8 <span data-pl>SESJI</span><span data-en>SESSIONS</span></span>
+      </div>
+      <div class="meta"><span class="ttl"><span data-pl>Łapacz snów</span><span data-en>Dreamcatcher</span></span><span class="num">CASE / 12</span></div>
+      <div class="data">
+        <span><strong>8</strong><span data-pl>sesji</span><span data-en>sessions</span></span>
+        <span><strong>14 mc.</strong><span data-pl>czas</span><span data-en>time</span></span>
+        <span><strong><span data-pl>udo</span><span data-en>thigh</span></strong><span data-pl>miejsce</span><span data-en>area</span></span>
+      </div>
+    </article>
+  </div>
+  <div class="gal-hint fadein"><span data-pl>najedź na zdjęcie, by zobaczyć efekt</span><span data-en>hover a photo to see the after</span></div>
+</section>
+
+<!-- PRICING -->
+<section class="section bg2" id="cen">
+  <div class="section-head">
+    <span class="small-caps">04 · <span data-pl>Cennik</span><span data-en>Pricing</span></span>
+    <h2 class="tw" data-tw data-pl><span class="accent">Trzy</span> sposoby<br>na nowy początek.</h2>
+    <h2 class="tw" data-tw data-en><span class="accent">Three</span> ways<br>to begin again.</h2>
+    <p class="fadein"><span data-pl>Cena zależy od powierzchni, koloru i ilości tuszu. Pakiety są tańsze.</span><span data-en>Price scales with surface, color, density. Packages cost less.</span></p>
+  </div>
+  <div class="price-grid">
+    <div class="price fadein">
+      <span class="small-caps">Single</span>
+      <h3><span data-pl>Pojedyncza <span class="accent">sesja</span></span><span data-en>Single <span class="accent">session</span></span></h3>
+      <span class="muted" style="font-size:14px;color:var(--muted)"><span data-pl>do 5×5 cm</span><span data-en>up to 5×5 cm</span></span>
+      <div class="pln">220<small>PLN</small></div>
+      <ul>
+        <li><span data-pl>Konsultacja gratis</span><span data-en>Free consult</span></li>
+        <li><span data-pl>Test plamki</span><span data-en>Patch test</span></li>
+        <li><span data-pl>Pisemny plan</span><span data-en>Written plan</span></li>
+        <li><span data-pl>Zimne okłady i maść</span><span data-en>Cold compress + ointment</span></li>
+      </ul>
+      <a class="btn outline" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Wybierz</span><span data-en>Choose</span><span class="arr">→</span></a>
+    </div>
+    <div class="price feat fadein">
+      <span class="ribbon"><span data-pl>najczęściej</span><span data-en>most chosen</span></span>
+      <span class="small-caps">Pakiet · 4</span>
+      <h3><span data-pl>Pakiet <span class="accent">4 sesji</span></span><span data-en><span class="accent">4-session</span> pack</span></h3>
+      <span class="muted" style="font-size:14px"><span data-pl>15% taniej</span><span data-en>15% off</span></span>
+      <div class="pln">760<small>PLN</small></div>
+      <ul>
+        <li><span data-pl>Wszystko z Single</span><span data-en>Everything in Single</span></li>
+        <li><span data-pl>15% taniej</span><span data-en>15% off</span></li>
+        <li><span data-pl>Stały terminarz</span><span data-en>Fixed schedule</span></li>
+        <li><span data-pl>Kontrola WhatsApp</span><span data-en>WhatsApp follow-ups</span></li>
+        <li><span data-pl>Dokumentacja foto</span><span data-en>Photo documentation</span></li>
+      </ul>
+      <a class="btn" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Zarezerwuj</span><span data-en>Book</span><span class="arr">→</span></a>
+    </div>
+    <div class="price fadein">
+      <span class="small-caps">Full · Program</span>
+      <h3><span data-pl>Pełne <span class="accent">usunięcie</span></span><span data-en>Full <span class="accent">removal</span></span></h3>
+      <span class="muted" style="font-size:14px;color:var(--muted)"><span data-pl>indywidualna wycena</span><span data-en>quote per case</span></span>
+      <div class="pln"><span data-pl>od</span><span data-en>from</span> 1 600<small>PLN</small></div>
+      <ul>
+        <li><span data-pl>6–8 sesji</span><span data-en>6–8 sessions</span></li>
+        <li><span data-pl>20% taniej</span><span data-en>20% off</span></li>
+        <li><span data-pl>Plan długoterminowy</span><span data-en>Long-term plan</span></li>
+        <li><span data-pl>Gwarancja efektu</span><span data-en>Outcome guarantee</span></li>
+        <li><span data-pl>Sesja kontrolna 12 mc.</span><span data-en>12-month check-up</span></li>
+      </ul>
+      <a class="btn outline" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Porozmawiajmy</span><span data-en>Let's talk</span><span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<section class="pull">
+  <blockquote class="tw" data-tw data-pl>„Nie usuwamy <span class="accent">przeszłości</span>.<br>Robimy <span class="accent">miejsce</span>."</blockquote>
+  <blockquote class="tw" data-tw data-en>"We don't erase the <span class="accent">past</span>.<br>We make <span class="accent">space</span>."</blockquote>
+  <div class="by fadein">— InkOff Studio · Lublin</div>
+</section>
+
+<!-- REVIEWS -->
+<section class="section" id="opi">
+  <div class="section-head">
+    <span class="small-caps">05 · <span data-pl>Opinie</span><span data-en>Reviews</span></span>
+    <h2 class="tw" data-tw data-pl>Posłuchaj<br><span class="accent">klientów</span>.</h2>
+    <h2 class="tw" data-tw data-en>Hear from<br>our <span class="accent">clients</span>.</h2>
+  </div>
+  <div class="rev-cta fadein">
+    <p class="lead"><span data-pl>Nie wymyślamy opinii.</span><span data-en>We don't make up reviews.</span></p>
+    <p class="sub"><span data-pl>Przeczytaj, co o nas piszą nasi klienci — prosto z Booksy, Google i Facebooka.</span><span data-en>Read what our clients write about us — straight from Booksy, Google and Facebook.</span></p>
+    <div class="rev-cta-row">
+      <a class="rev-btn primary" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-booksy"></use></svg></span><span data-pl>Opinie na Booksy</span><span data-en>Reviews on Booksy</span></a>
+      <a class="rev-btn" href="https://www.google.com/maps/search/?api=1&query=InkOff+Sierpniowa+29+Lublin" target="_blank" rel="noopener"><span data-pl>Opinie w Google</span><span data-en>Google reviews</span></a>
+      <a class="rev-btn" href="https://www.facebook.com/messages/t/InkoffLublin/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-fb"></use></svg></span>Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- IG -->
+<section class="section bg2">
+  <div class="section-head">
+    <span class="small-caps">06 · Instagram</span>
+    <h2 class="tw" data-tw data-pl>Codzienny <span class="accent">dziennik</span><br>studia.</h2>
+    <h2 class="tw" data-tw data-en>The studio's <span class="accent">daily<br>diary</span>.</h2>
+    <p class="fadein"><a href="https://www.instagram.com/inkoff.pl/" target="_blank" rel="noopener">@inkoff.pl</a> · <span data-pl>zobacz nasze realizacje</span><span data-en>see our work</span></p>
+  </div>
+  <div class="ig">
+    <div class="cell has-img"><img src="assets/process-laser.jpg" alt="Krzysztof Łuckiewicz przy laserze" loading="lazy" /></div>
+    <div class="cell has-img"><img src="assets/gal-tribal-before.jpg" alt="Tatuaż tribal przed usuwaniem" loading="lazy" /></div>
+    <div class="cell has-vid"><video src="assets/removal.mp4" poster="assets/removal-poster.jpg" muted loop playsinline preload="none"></video><span class="vid-tag"></span></div>
+    <div class="cell has-img"><img src="assets/ig-faded.jpg" alt="Tatuaż rozjaśniony niemal do zera" loading="lazy" /></div>
+    <div class="cell has-img"><img src="assets/process-room.jpg" alt="Gabinet zabiegowy InkOff" loading="lazy" /></div>
+    <div class="cell"><span class="lbl">— wkrótce</span></div>
+    <div class="cell has-img"><img src="assets/ig-script.jpg" alt="Tatuaż-napis w trakcie usuwania" loading="lazy" /></div>
+    <div class="cell has-vid"><video src="assets/removal-2.mp4" poster="assets/removal-2-poster.jpg" muted loop playsinline preload="none"></video><span class="vid-tag"></span></div>
+    <div class="cell has-img"><img src="assets/gal-dream-after.jpg" alt="Tatuaż łapacz snów — postęp usuwania" loading="lazy" /></div>
+    <div class="cell has-img"><img src="assets/process-action.jpg" alt="Zabieg w trakcie" loading="lazy" /></div>
+    <div class="cell has-img"><img src="assets/owner-portrait.jpg" alt="Krzysztof Łuckiewicz" loading="lazy" /></div>
+    <div class="cell"><span class="lbl">— wkrótce</span></div>
+  </div>
+  <div class="ig-foot fadein"><span data-pl>oznacz nas <a href="https://www.instagram.com/inkoff.pl/" target="_blank" rel="noopener">@inkoff.pl</a> — udostępnimy Twoje przed/po</span><span data-en>tag us <a href="https://www.instagram.com/inkoff.pl/" target="_blank" rel="noopener">@inkoff.pl</a> — we'll share your before/after</span></div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-head">
+    <span class="small-caps">07 · F.A.Q.</span>
+    <h2 class="tw" data-tw data-pl>Pytania, które<br><span class="accent">wszyscy</span> zadają.</h2>
+    <h2 class="tw" data-tw data-en>Questions <span class="accent">everyone</span><br>asks first.</h2>
+    <p class="fadein"><span data-pl>Jeśli Twojego nie ma — napisz. Odpowiadamy w 24h.</span><span data-en>If yours isn't here — write. We reply within 24h.</span></p>
+  </div>
+  <div class="faq">
+    <details open>
+      <summary><span><span data-pl>Czy to <span class="accent">boli</span>?</span><span data-en>Does it <span class="accent">hurt</span>?</span></span><span class="plus">+</span></summary>
+      <p><span data-pl>Bardziej niż robienie tatuażu, krócej. Większość klientów porównuje to do strzelenia gumką w skórę. Stosujemy chłodzenie i krem znieczulający.</span><span data-en>More than getting it done, but shorter. Most compare it to a rubber-band snap. Cooling and topical numbing on demand.</span></p>
+    </details>
+    <details>
+      <summary><span><span data-pl>Ile <span class="accent">sesji</span>?</span><span data-en>How many <span class="accent">sessions</span>?</span></span><span class="plus">+</span></summary>
+      <p><span data-pl>Średnio 4–8 zależnie od koloru, głębokości tuszu i fototypu skóry. Konkretną liczbę podajemy po teście plamki.</span><span data-en>Typically 4–8, depending on color, depth, skin type. We tell you exactly after a patch test.</span></p>
+    </details>
+    <details>
+      <summary><span><span data-pl>Czy zostają <span class="accent">blizny</span>?</span><span data-en>Will it <span class="accent">scar</span>?</span></span><span class="plus">+</span></summary>
+      <p><span data-pl>Pikosekundowy Pico-Q rozbija pigment, nie spala skóry. Przy zaleceniach po zabiegu blizn nie ma.</span><span data-en>Pico-Q shatters pigment, doesn't burn skin. With proper aftercare — no scarring.</span></p>
+    </details>
+    <details>
+      <summary><span><span data-pl>Co z <span class="accent">kolorem</span>?</span><span data-en>What about <span class="accent">color</span>?</span></span><span class="plus">+</span></summary>
+      <p><span data-pl>Trzy długości fali. Usuwamy czarny, czerwony, zielony, niebieski. Najtrudniejsze są neonowe i białe.</span><span data-en>Three wavelengths. Black, red, green, blue. Hardest are neons and whites.</span></p>
+    </details>
+    <details>
+      <summary><span><span data-pl>Cover-up czy <span class="accent">pełne</span>?</span><span data-en>Cover-up or <span class="accent">full</span>?</span></span><span class="plus">+</span></summary>
+      <p><span data-pl>Decyduj na etapie III, gdy widać 50% efektu. Wielu klientów po 3 sesjach idzie do tatuatora po cover-up — to znacznie łatwiejsze.</span><span data-en>Decide at stage III when 50% is gone. Many do a cover-up over a "softer canvas" — much easier work.</span></p>
+    </details>
+  </div>
+</section>
+
+<!-- CONTACT / MAP -->
+<section class="section bg2" id="kon">
+  <div class="section-head">
+    <span class="small-caps">08 · <span data-pl>Kontakt</span><span data-en>Contact</span></span>
+    <h2 class="tw" data-tw data-pl>Wpadnij <span class="accent">na herbatę</span>.<br>Konsultacja gratis.</h2>
+    <h2 class="tw" data-tw data-en>Drop by <span class="accent">for tea</span>.<br>Consult is free.</h2>
+    <p class="fadein"><span data-pl>Lublin, ul. Sierpniowa 29 — z dogodnym dojazdem i parkingiem.</span><span data-en>Lublin, Sierpniowa 29 — easy to reach, parking on site.</span></p>
+  </div>
+  <div class="contact-wrap fadein">
+    <div class="contact-info">
+      <h3>Sierpniowa 29<br><span class="accent">Lublin</span></h3>
+      <dl>
+        <dt><span data-pl>GODZINY</span><span data-en>HOURS</span></dt>
+        <dd>PN–PT · <span data-pl>zamknięte</span><span data-en>closed</span><br>SOB · 15:00–20:00<br>ND · <span data-pl>zamknięte</span><span data-en>closed</span></dd>
+        <dt><span data-pl>TELEFON</span><span data-en>PHONE</span></dt><dd><a href="tel:+48512499767">+48 512 499 767</a></dd>
+        <dt>EMAIL</dt><dd><a href="mailto:inkoffstudio@gmail.com">inkoffstudio@gmail.com</a></dd>
+        <dt><span data-pl>REZERWACJA</span><span data-en>BOOKING</span></dt><dd><a href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener">Booksy ↗</a></dd>
+      </dl>
+      <div class="links">
+        <a href="https://www.instagram.com/inkoff.pl/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-ig"></use></svg></span>Instagram</a>
+        <a href="https://www.facebook.com/messages/t/InkoffLublin/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-fb"></use></svg></span>Messenger</a>
+        <a href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-booksy"></use></svg></span>Booksy</a>
+      </div>
+    </div>
+    <div class="contact-map">
+      <iframe title="Mapa — InkOff.pl, Sierpniowa 29, Lublin" src="https://maps.google.com/maps?q=Sierpniowa%2029%2C%20Lublin&t=&z=15&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <div class="map-card">
+        <span class="map-where">Sierpniowa 29 · 20-816 Lublin</span>
+        <a href="https://www.google.com/maps/search/?api=1&query=Sierpniowa+29,+Lublin" target="_blank" rel="noopener"><span data-pl>Trasa dojazdu</span><span data-en>Directions</span> ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-strip">
+  <div class="inner fadein">
+    <h2 class="tw" data-tw data-pl>Zacznij <span class="accent">nowy<br>rozdział</span> już dziś.</h2>
+    <h2 class="tw" data-tw data-en>Begin your <span class="accent">new<br>chapter</span> today.</h2>
+    <p><span data-pl>Konsultacja trwa 30 minut. Jest bezpłatna i niezobowiązująca.</span><span data-en>The consult takes 30 minutes. Free, no commitment.</span></p>
+    <div class="btns">
+      <a class="btn accent" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Umów konsultację</span><span data-en>Book a consult</span><span class="arr">→</span></a>
+      <a class="btn outline" href="https://www.instagram.com/inkoff.pl/" target="_blank" rel="noopener"><span data-pl>Napisz do nas</span><span data-en>Write to us</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="inner">
+    <div>
+      <div class="brand"><img class="footer-logo" src="assets/logo-white.png" alt="InkOff.pl" /></div>
+      <p class="f-lede"><span data-pl>Studio usuwania tatuażu w sercu Lublina. Bez oceniania, bez pośpiechu, z troską.</span><span data-en>Tattoo removal in the heart of Lublin. No judgment, no rush, with care.</span></p>
+    </div>
+    <div>
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#proc"><span data-pl>Proces</span><span data-en>Process</span></a></li>
+        <li><a href="#gal"><span data-pl>Galeria</span><span data-en>Gallery</span></a></li>
+        <li><a href="#cen"><span data-pl>Cennik</span><span data-en>Pricing</span></a></li>
+        <li><a href="#opi"><span data-pl>Opinie</span><span data-en>Reviews</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <h5><span data-pl>Kontakt</span><span data-en>Contact</span></h5>
+      <ul>
+        <li>Sierpniowa 29</li>
+        <li>20-816 Lublin</li>
+        <li><a href="tel:+48512499767">+48 512 499 767</a></li>
+        <li><a href="mailto:inkoffstudio@gmail.com">inkoffstudio@gmail.com</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Social</h5>
+      <ul class="soc-list">
+        <li><a href="https://www.instagram.com/inkoff.pl/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-ig"></use></svg></span>Instagram</a></li>
+        <li><a href="https://www.facebook.com/profile.php?id=61561072956785" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-fb"></use></svg></span>Facebook</a></li>
+        <li><a href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span class="soc-ic"><svg><use href="#ic-booksy"></use></svg></span>Booksy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="colo">
+    <span>© 2026 InkOff Studio · NIP 712 000 00 00</span>
+    <span><span data-pl>Wykonane z troską · Lublin / PL</span><span data-en>Built with care · Lublin / PL</span></span>
+  </div>
+</footer>
+
+</div><!-- /curtain -->
+
+<!-- TWEAKS PANEL -->
+<button class="tw-launch" id="tw-launch" title="Tweaks">
+  <span>✦</span> Tweaks
+</button>
+<aside class="tweaks" id="tweaks" aria-hidden="true">
+  <header class="tw-head">
+    <h4><span class="leaf-mini"></span>Tweaks</h4>
+    <button class="tw-close" id="tw-close" aria-label="Close">×</button>
+  </header>
+
+  <section class="tw-section">
+    <div class="tw-lbl">Paleta</div>
+    <div class="tw-swatches" id="palettes">
+      <button data-pal="gold" class="on" style="--c1:#a67c3c;--c2:#e3c78c;--c3:#e9e4da"><span>Gold</span></button>
+      <button data-pal="sage"     style="--c1:#5e7050;--c2:#c5d2b6;--c3:#f5efe3"><span>Sage</span></button>
+      <button data-pal="powder" style="--c1:#4a7a92;--c2:#bdd2de;--c3:#eef2f5"><span>Powder</span></button>
+      <button data-pal="peach"    style="--c1:#bf6b50;--c2:#f0c8b3;--c3:#f7ede4"><span>Peach</span></button>
+      <button data-pal="charcoal" style="--c1:#1a1a1a;--c2:#d6cdb6;--c3:#efe9dd"><span>Charcoal</span></button>
+    </div>
+  </section>
+
+  <section class="tw-section">
+    <div class="tw-lbl">Czytelność nad wideo</div>
+    <div class="tw-seg" id="legibility">
+      <button data-leg="glass">Szkło</button>
+      <button data-leg="frost" class="on">Mróz</button>
+      <button data-leg="halo">Halo</button>
+      <button data-leg="scrim">Welon</button>
+    </div>
+  </section>
+
+  <section class="tw-section">
+    <div class="tw-lbl">Typografia (display)</div>
+    <div class="tw-seg" id="displays">
+      <button data-display="sans" class="on">Display sans</button>
+      <button data-display="serif">Italic serif</button>
+    </div>
+  </section>
+
+  <section class="tw-section">
+    <div class="tw-lbl">Język</div>
+    <div class="tw-seg" id="languages">
+      <button data-lang="pl" class="on">Polski</button>
+      <button data-lang="en">English</button>
+    </div>
+  </section>
+
+  <div class="tw-foot">
+    <span>InkOff · v3 soft</span>
+    <span id="palette-name">Gold · Sans</span>
+  </div>
+</aside>
+
+<style>
+  /* tweaks panel styling (component-scoped) */
+  .tw-launch{position:fixed;right:18px;bottom:18px;z-index:48;background:var(--ink);color:var(--bg);border:none;border-radius:999px;padding:11px 18px;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;font-weight:500;box-shadow:0 14px 32px -8px rgba(0,0,0,.32);display:inline-flex;align-items:center;gap:8px;transition:transform .2s}
+  .tw-launch:hover{transform:translateY(-2px)}
+  .tw-launch span{font-size:14px;color:var(--accent-soft)}
+
+  .tweaks{position:fixed;right:18px;bottom:18px;z-index:49;width:320px;background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:22px;font-family:var(--sans);font-size:13px;color:var(--ink);box-shadow:0 30px 60px -16px rgba(0,0,0,.32);transform:translateY(20px) scale(.96);opacity:0;pointer-events:none;transition:opacity .25s, transform .25s;display:flex;flex-direction:column;gap:18px}
+  .tweaks.on{transform:none;opacity:1;pointer-events:auto}
+  .tw-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:14px;border-bottom:1px solid var(--line)}
+  .tw-head h4{font-family:var(--display);font-style:var(--display-style);font-weight:var(--display-weight);font-size:22px;display:flex;align-items:center;gap:10px}
+  .tw-head h4 .leaf-mini{width:10px;height:10px;background:var(--accent);border-radius:0 100% 0 100%;display:inline-block;transform:rotate(-20deg)}
+  .tw-close{background:none;border:none;font-size:24px;color:var(--muted);cursor:pointer;padding:4px;line-height:1}
+  .tw-close:hover{color:var(--ink)}
+  .tw-section{display:flex;flex-direction:column;gap:10px}
+  .tw-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .tw-swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+  .tw-swatches button{aspect-ratio:1;border-radius:14px;border:2px solid transparent;cursor:pointer;background:var(--c3);position:relative;padding:0;overflow:hidden;transition:transform .15s, border-color .2s}
+  .tw-swatches button::before{content:"";position:absolute;inset:30%;border-radius:50%;background:var(--c1)}
+  .tw-swatches button::after{content:"";position:absolute;right:6px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--c2)}
+  .tw-swatches button span{position:absolute;left:0;right:0;bottom:-22px;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);opacity:0;transition:.2s}
+  .tw-swatches button:hover{transform:translateY(-2px)}
+  .tw-swatches button:hover span{opacity:1}
+  .tw-swatches button.on{border-color:var(--ink)}
+  .tw-seg{display:flex;background:color-mix(in oklab, var(--ink) 8%, transparent);border-radius:999px;padding:3px}
+  .tw-seg button{flex:1;border:none;background:transparent;padding:8px 10px;border-radius:999px;font-family:var(--sans);font-size:11px;letter-spacing:.04em;color:var(--muted);cursor:pointer;font-weight:500;transition:.15s}
+  .tw-seg button.on{background:var(--ink);color:var(--bg)}
+  .tw-foot{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500;padding-top:12px;border-top:1px solid var(--line)}
+</style>
+
+<script>
+/* ─────────── Scroll-driven tattoo → clean crossfade ───────────
+   Two hi-res stills (tattooed → clean) crossfaded by scroll position.
+   A smooth lerp toward the target keeps the dissolve buttery on coarse scroll. */
+const hint = document.getElementById('hint');
+const afterLayer = document.querySelector('.handbg-after');
+const FADE_VH = 0.9;          // tattoo fully gone after ~0.9 viewport-heights of scroll (fast)
+
+let targetFade = 0, currentFade = 0;
+function onScroll(){
+  const y = window.scrollY, vh = window.innerHeight;
+  let t = Math.max(0, Math.min(1, y / (vh * FADE_VH)));
+  // ease so the ink lingers a moment, then dissolves a touch faster
+  targetFade = t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+  if (hint) hint.style.setProperty('--hint-opacity', Math.max(0, 1 - t*3).toFixed(3));
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+window.addEventListener('resize', onScroll, { passive: true });
+
+function rafLoop(){
+  const delta = targetFade - currentFade;
+  if (Math.abs(delta) > 0.0006){
+    currentFade += delta * 0.16;
+    if (afterLayer) afterLayer.style.opacity = currentFade.toFixed(3);
+  }
+  try { scrubTW(); } catch(e){}
+  requestAnimationFrame(rafLoop);
+}
+requestAnimationFrame(rafLoop);
+onScroll();
+
+/* ─────────── Typewriter tied to scroll position ─────────── */
+function prepareTW(el){
+  if (el.dataset.twPrepared) return;
+  el.dataset.twPrepared = '1';
+  const walk = (node) => {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === Node.TEXT_NODE){
+        const frag = document.createDocumentFragment();
+        // Split into words + whitespace. Each word becomes a non-breaking unit
+        // (so lines only ever break BETWEEN words, never mid-word), while the
+        // whitespace stays a real space — a natural line-break opportunity.
+        const parts = child.textContent.split(/(\s+)/);
+        for (const part of parts){
+          if (part === '') continue;
+          if (/^\s+$/.test(part)){
+            frag.appendChild(document.createTextNode(' '));
+          } else {
+            const word = document.createElement('span');
+            word.className = 'tw-word';
+            for (const c of part){
+              const s = document.createElement('span');
+              s.className = 'ch';
+              s.textContent = c;
+              word.appendChild(s);
+            }
+            frag.appendChild(word);
+          }
+        }
+        child.replaceWith(frag);
+      } else if (child.nodeType === Node.ELEMENT_NODE){
+        walk(child);
+      }
+    });
+  };
+  walk(el);
+  el._chs = el.querySelectorAll('.ch');
+  el._shown = 0;
+}
+
+const twEls = document.querySelectorAll('.tw[data-tw]');
+twEls.forEach(prepareTW);
+
+function twLangActive(el){
+  const langs = ['pl','en'];
+  const elLang = langs.find(l => el.hasAttribute('data-'+l));
+  return !elLang || document.body.dataset.lang === elLang;
+}
+
+function revealTo(el, n){
+  const chs = el._chs; if (!chs) return;
+  n = Math.max(0, Math.min(chs.length, n));
+  if (n > el._shown){
+    for (let i = el._shown; i < n; i++) chs[i].classList.add('shown');
+    el._shown = n;
+  }
+  el.classList.toggle('typing', el._shown > 0 && el._shown < chs.length);
+  if (el._shown >= chs.length){ el.classList.remove('typing'); el.classList.add('played'); }
+}
+
+// Characters reveal in lock-step with the scroll position — scroll fast, they
+// appear fast; scroll slowly, they appear slowly. Monotonic (never un-reveals).
+// Section typewriters: once an element scrolls into view we kick a smooth,
+// time-based reveal at a constant cadence (decoupled from scroll velocity, so it
+// never looks janky). scrubTW just decides WHEN to start; twTimedReveal does the typing.
+function twTimedReveal(el){
+  if (el._timedStarted) return;
+  if (!twLangActive(el)) return;
+  const chs = el._chs; if (!chs || !chs.length) return;
+  if (el._shown >= chs.length) return;
+  el._timedStarted = true; el._loadAnim = true;
+  const tick = () => {
+    if (!twLangActive(el)){ el._loadAnim = false; el._timedStarted = false; return; }
+    revealTo(el, el._shown + 1);
+    if (el._shown < el._chs.length) setTimeout(tick, 38);
+    else el._loadAnim = false;
+  };
+  tick();
+}
+
+function scrubTW(){
+  const vh = window.innerHeight;
+  const trigger = vh * 0.86;            // start typing once the heading rises this far up
+  twEls.forEach(el => {
+    if (el.hasAttribute('data-tw-load')) return; // hero handled by its load animation
+    if (el._loadAnim || el._timedStarted) return;
+    if (!twLangActive(el)) return;
+    const chs = el._chs; if (!chs || !chs.length) return;
+    if (el._shown >= chs.length) return;
+    const r = el.getBoundingClientRect();
+    if (r.top > trigger || r.bottom < 0) return; // not in view yet
+    twTimedReveal(el);
+  });
+}
+
+// Hero sits above the fold, so there's nothing to scroll into — animate it once
+// on load so it still types in. Everything below is purely scroll-driven.
+function loadAnimHero(){
+  document.querySelectorAll('.tw[data-tw-load]').forEach(el => {
+    if (el._loadStarted) return;
+    if (!twLangActive(el)) return;
+    if (!el._chs || el._shown >= el._chs.length) return;
+    el._loadStarted = true; el._loadAnim = true;
+    const delay = parseFloat(el.dataset.delay) || 0;
+    setTimeout(() => {
+      const tick = () => {
+        if (!twLangActive(el)){ el._loadAnim = false; return; }
+        revealTo(el, el._shown + 1);
+        if (el._shown < el._chs.length) setTimeout(tick, 52);
+        else el._loadAnim = false;
+      };
+      tick();
+    }, delay);
+  });
+}
+
+// fade-ins
+const ioFade = new IntersectionObserver((entries)=>{
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, {threshold: 0.12});
+document.querySelectorAll('.fadein').forEach(el => ioFade.observe(el));
+function kickFade(){
+  const vh = window.innerHeight;
+  document.querySelectorAll('.fadein').forEach(el => {
+    if (el.classList.contains('in')) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < vh*0.95 && r.bottom > 0) el.classList.add('in');
+  });
+}
+
+window.addEventListener('resize', scrubTW, {passive:true});
+window.addEventListener('load', () => { loadAnimHero(); scrubTW(); kickFade(); });
+loadAnimHero();
+scrubTW();
+setTimeout(() => { loadAnimHero(); scrubTW(); kickFade(); }, 120);
+setTimeout(() => { scrubTW(); kickFade(); }, 600);
+
+/* ─────────── Live removal video carousel ─────────── */
+(function(){
+  const box = document.querySelector('.live-video');
+  if (!box) return;
+  const slides = [...box.querySelectorAll('.live-slide')];
+  const dots = [...box.querySelectorAll('.live-nav button')];
+  let i = 0, timer;
+  function show(n){
+    i = (n + slides.length) % slides.length;
+    slides.forEach((s, k) => {
+      const active = k === i;
+      s.classList.toggle('is-active', active);
+      if (active){ s.play && s.play().catch(()=>{}); }
+      else { s.pause && s.pause(); }
+    });
+    dots.forEach((d, k) => d.classList.toggle('is-active', k === i));
+  }
+  function next(){ show(i + 1); }
+  function prev(){ show(i - 1); }
+  dots.forEach((d, k) => d.addEventListener('click', () => { show(k); restart(); }));
+  box.querySelector('.live-arrow.next').addEventListener('click', () => { next(); restart(); });
+  box.querySelector('.live-arrow.prev').addEventListener('click', () => { prev(); restart(); });
+  // advance when the playing clip ends; also a safety auto-advance for looping clips
+  function restart(){ clearInterval(timer); timer = setInterval(next, 14000); }
+  slides.forEach(s => s.addEventListener('ended', () => { next(); restart(); }));
+  show(0); restart();
+})();
+
+/* ─────────── PL/EN language toggle ─────────── */
+const langBtns = document.querySelectorAll('.lang button, [id="languages"] button');
+function applyLang(l){
+  document.body.dataset.lang = l;
+  // sync both togglers
+  document.querySelectorAll('.lang button').forEach(b => b.classList.toggle('on', b.dataset.set === l || b.dataset.lang === l));
+  document.querySelectorAll('#languages button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+  // reveal tws for the newly active language at the current scroll position
+  loadAnimHero();
+  scrubTW();
+  updateTweakStamp();
+}
+langBtns.forEach(b => b.addEventListener('click', () => {
+  const l = b.dataset.set || b.dataset.lang;
+  applyLang(l);
+}));
+
+/* ─────────── Tweaks panel ─────────── */
+const tweaks = document.getElementById('tweaks');
+const launch = document.getElementById('tw-launch');
+const closeBtn = document.getElementById('tw-close');
+
+function openTweaks(){ tweaks.classList.add('on'); tweaks.setAttribute('aria-hidden','false'); launch.style.display='none'; }
+function closeTweaks(){ tweaks.classList.remove('on'); tweaks.setAttribute('aria-hidden','true'); launch.style.display=''; }
+launch.addEventListener('click', openTweaks);
+closeBtn.addEventListener('click', closeTweaks);
+
+const palBtns = document.querySelectorAll('#palettes button');
+palBtns.forEach(b => b.addEventListener('click', () => {
+  palBtns.forEach(x => x.classList.remove('on')); b.classList.add('on');
+  document.body.dataset.palette = b.dataset.pal;
+  updateTweakStamp();
+}));
+
+/* motyw: stały złoty (light) — przełącznik usunięty */
+
+const dispBtns = document.querySelectorAll('#displays button');
+dispBtns.forEach(b => b.addEventListener('click', () => {
+  dispBtns.forEach(x => x.classList.remove('on')); b.classList.add('on');
+  document.body.dataset.display = b.dataset.display;
+  updateTweakStamp();
+}));
+
+const legBtns = document.querySelectorAll('#legibility button');
+legBtns.forEach(b => b.addEventListener('click', () => {
+  legBtns.forEach(x => x.classList.remove('on')); b.classList.add('on');
+  document.body.dataset.legibility = b.dataset.leg;
+}));
+
+function updateTweakStamp(){
+  const pal = document.body.dataset.palette;
+  const disp = document.body.dataset.display;
+  const cap = s => s[0].toUpperCase()+s.slice(1);
+  document.getElementById('palette-name').textContent = `${cap(pal)} · ${disp==='serif'?'Italic':'Display'}`;
+}
+updateTweakStamp();
+
+// hide hint on first user gesture
+let hidHint = false;
+window.addEventListener('wheel', () => { if (!hidHint){ hidHint = true; setTimeout(()=>{ hint.style.opacity='0' }, 1200); }}, {passive:true, once:true});
+</script>
+
+</body>
+</html>
