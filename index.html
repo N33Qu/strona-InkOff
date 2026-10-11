@@ -2,11 +2,12 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>InkOff · Soft Healing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="v3-soft.css?v=20260618b" />
+<link rel="stylesheet" href="v3-soft.css?v=20261011j" />
 <link rel="icon" type="image/png" href="assets/favicon.png" />
 <link rel="apple-touch-icon" href="assets/favicon.png" />
 </head>
@@ -32,8 +33,14 @@
 
 <!-- HAND BG — scroll-driven crossfade: tattooed arm dissolves to clean skin -->
 <div class="handbg" aria-hidden="true">
-  <img class="handbg-layer handbg-before" src="assets/hero-before.jpg" alt="" />
-  <img class="handbg-layer handbg-after" src="assets/hero-after.jpg" alt="" />
+  <picture>
+    <source media="(max-width:700px)" srcset="assets/hero-mobile-before.jpg?v=2" />
+    <img class="handbg-layer handbg-before" src="assets/hero-pc-before.jpg?v=2" alt="" />
+  </picture>
+  <picture>
+    <source media="(max-width:700px)" srcset="assets/hero-mobile-after.jpg?v=3" />
+    <img class="handbg-layer handbg-after" src="assets/hero-pc-after.jpg?v=3" alt="" />
+  </picture>
 </div>
 
 <!-- scroll hint, fades after movement -->
@@ -46,16 +53,18 @@
 <header class="nav">
   <div class="nav-inner">
     <a class="brand" href="#" aria-label="InkOff.pl"><img class="brand-logo" src="assets/logo-gold.png" alt="InkOff.pl — laserowe usuwanie tatuażu i PMU" /></a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#about"><span data-pl>O studio</span><span data-en>About</span></a>
       <a href="#proc"><span data-pl>Proces</span><span data-en>Process</span></a>
       <a href="#gal"><span data-pl>Galeria</span><span data-en>Gallery</span></a>
       <a href="#cen"><span data-pl>Cennik</span><span data-en>Pricing</span></a>
       <a href="#kon"><span data-pl>Kontakt</span><span data-en>Contact</span></a>
+      <a class="btn accent nav-book-mobile" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Umów wizytę</span><span data-en>Book</span><span class="arr">→</span></a>
     </div>
     <div class="nav-right">
       <div class="lang"><button class="on" data-set="pl">PL</button><button data-set="en">EN</button></div>
-      <a class="btn accent" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Umów wizytę</span><span data-en>Book</span><span class="arr">→</span></a>
+      <a class="btn accent nav-book" href="https://inkofflaseroweusuwanietatuazuipmu.booksy.com/c/" target="_blank" rel="noopener"><span data-pl>Umów wizytę</span><span data-en>Book</span><span class="arr">→</span></a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
@@ -559,19 +568,54 @@
 </style>
 
 <script>
+/* ─────────── Mobile nav toggle ─────────── */
+(function(){
+  const nav = document.querySelector('.nav');
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if(!nav || !toggle || !links) return;
+  const close = () => { nav.classList.remove('open'); toggle.setAttribute('aria-expanded','false'); };
+  const open  = () => { nav.classList.add('open');  toggle.setAttribute('aria-expanded','true');  };
+  toggle.addEventListener('click', () => nav.classList.contains('open') ? close() : open());
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('click', e => { if(nav.classList.contains('open') && !nav.contains(e.target)) close(); });
+  document.addEventListener('keydown', e => { if(e.key === 'Escape') close(); });
+})();
+
 /* ─────────── Scroll-driven tattoo → clean crossfade ───────────
    Two hi-res stills (tattooed → clean) crossfaded by scroll position.
    A smooth lerp toward the target keeps the dissolve buttery on coarse scroll. */
 const hint = document.getElementById('hint');
 const afterLayer = document.querySelector('.handbg-after');
-const FADE_VH = 0.9;          // tattoo fully gone after ~0.9 viewport-heights of scroll (fast)
+const FADE_VH = 1.5;          // tattoo fully gone after ~1.5 viewport-heights of scroll (slow enough to watch)
 
 let targetFade = 0, currentFade = 0;
+let heroDemo = false;          // set by the mobile auto-demo below
+
+// Phones: the arm sits in the top band and is seen through the window left between the hero card
+// and the stats tiles (see .hero padding in the phone CSS) — dissolve while it's in that window.
+const mqPhone = window.matchMedia('(max-width:700px)');
+const heroCard = document.querySelector('.hero-text');
+const statsRow = document.querySelector('.hero-stats-inner');
+function phoneFadeProgress(vh){
+  const cardBottom = heroCard.getBoundingClientRect().bottom;
+  const statsTop = statsRow.getBoundingClientRect().top;
+  const startAt = 0.15 * vh;   // hero card has (almost) uncovered the arm
+  const endAt = 0.30 * vh;     // stats tiles start covering it
+  return (startAt - cardBottom) / ((startAt - endAt) + (statsTop - cardBottom));
+}
+
 function onScroll(){
   const y = window.scrollY, vh = window.innerHeight;
+  if (heroDemo && y <= 40) return;   // demo owns the fade while we're still at the top
   let t = Math.max(0, Math.min(1, y / (vh * FADE_VH)));
   // ease so the ink lingers a moment, then dissolves a touch faster
-  targetFade = t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+  let fade = t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+  if (mqPhone.matches && heroCard && statsRow){
+    const p = Math.max(0, Math.min(1, phoneFadeProgress(vh)));
+    fade = p * p * (3 - 2 * p);      // smoothstep: gentle start and finish
+  }
+  targetFade = fade;
   if (hint) hint.style.setProperty('--hint-opacity', Math.max(0, 1 - t*3).toFixed(3));
 }
 window.addEventListener('scroll', onScroll, { passive: true });
@@ -580,7 +624,7 @@ window.addEventListener('resize', onScroll, { passive: true });
 function rafLoop(){
   const delta = targetFade - currentFade;
   if (Math.abs(delta) > 0.0006){
-    currentFade += delta * 0.16;
+    currentFade += delta * (heroDemo ? 0.035 : 0.16);   // slower, visible dissolve during the mobile demo
     if (afterLayer) afterLayer.style.opacity = currentFade.toFixed(3);
   }
   try { scrubTW(); } catch(e){}
@@ -588,6 +632,39 @@ function rafLoop(){
 }
 requestAnimationFrame(rafLoop);
 onScroll();
+
+/* ─────────── Mobile: auto demo of the removal (tattoo fades out → in, ×2) ───────────
+   Drives the same targetFade the scroll uses, so rafLoop keeps it buttery.
+   Only on phones, only while at the top; the moment the user scrolls, scroll takes over. */
+(function(){
+  if (!mqPhone.matches) return;
+  let demoActive = true;
+  heroDemo = true;
+  const HOLD = 2600;                 // ms per phase (~1.5s dissolve + ~1s hold)
+  const seq = [1, 0, 1, 0];          // disappear, reappear, disappear, reappear (2 iterations)
+  let i = 0;
+  const finish = () => { demoActive = false; heroDemo = false; onScroll(); };
+  function step(){
+    if (!demoActive) return;
+    if (i >= seq.length){ finish(); return; }
+    targetFade = seq[i++];
+    setTimeout(step, HOLD);
+  }
+  // if the visitor scrolls, abandon the demo — scroll position should rule
+  // (ignore the zero-distance scroll events browsers fire on load)
+  const stopOnRealScroll = () => {
+    if (window.scrollY > 40){ finish(); window.removeEventListener('scroll', stopOnRealScroll); onScroll(); }
+  };
+  window.addEventListener('scroll', stopOnRealScroll, { passive:true });
+  // start only once the page is actually on screen (a background tab would play it unseen)
+  const start = () => setTimeout(step, 1300);   // let the hero settle first
+  if (document.visibilityState === 'visible') start();
+  else document.addEventListener('visibilitychange', function onVis(){
+    if (document.visibilityState !== 'visible') return;
+    document.removeEventListener('visibilitychange', onVis);
+    start();
+  });
+})();
 
 /* ─────────── Typewriter tied to scroll position ─────────── */
 function prepareTW(el){

@@ -187,6 +187,16 @@ img{display:block;max-width:100%}
 }
 .handbg-after{opacity:0;will-change:opacity}
 [data-mode="dark"] .handbg-layer{filter:saturate(1.08) brightness(.95) contrast(1.08) blur(1px)}
+/* Mobile hero photo (vertical): lift the arm into the top band, above the hero card */
+@media (max-width:700px){
+  .handbg-layer{object-position:center 50%;transform:scale(1.25) translateY(-22%);}
+  /* the lifted photo ends at ~85% of the screen: fill below it with the photo's own wall colour
+     and melt the photo's bottom edge into it, instead of the paler page bg showing as a strip */
+  body:not([data-mode="dark"]) .handbg{background:#dccbb7}
+  body:not([data-mode="dark"]) .handbg::after{
+    background:linear-gradient(180deg, transparent 0%, transparent 68%, #dccbb7 86%, #dccbb7 100%);
+  }
+}
 
 /* Bottom fade — photo softly merges into bg color at intro → curtain transition */
 .handbg::after{
@@ -243,12 +253,31 @@ img{display:block;max-width:100%}
 .brand .leaf{width:12px;height:12px;background:var(--accent);border-radius:0 100% 0 100%;display:inline-block;transform:rotate(-20deg) translateY(2px)}
 .brand small{font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:500;margin-left:6px}
 .nav-links{display:flex;gap:24px;font-size:14px;color:var(--ink-2)}
+.nav-links a.nav-book-mobile{display:none}  /* only appears inside the mobile dropdown */
 .nav-links a{position:relative;padding:4px 0}
 .nav-links a:hover{color:var(--accent)}
 .nav-right{display:flex;align-items:center;gap:12px}
 .lang{display:inline-flex;background:color-mix(in oklab, var(--ink) 8%, transparent);border-radius:999px;padding:3px}
 .lang button{border:none;background:transparent;padding:5px 11px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);cursor:pointer;font-weight:500}
 .lang button.on{background:var(--ink);color:var(--bg)}
+
+/* Hamburger — hidden on desktop, shown on mobile via media query below */
+.nav-toggle{
+  display:none;
+  width:44px;height:44px;flex:0 0 auto;
+  align-items:center;justify-content:center;
+  flex-direction:column;gap:5px;
+  background:transparent;border:none;cursor:pointer;
+  border-radius:12px;padding:0;
+}
+.nav-toggle span{
+  display:block;width:22px;height:2px;border-radius:2px;
+  background:var(--ink);
+  transition:transform .32s ease, opacity .2s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-toggle[aria-expanded="true"] span:nth-child(2){opacity:0}
+.nav-toggle[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 .theme-toggle{
   width:38px;height:38px;
@@ -856,7 +885,36 @@ footer .colo{margin-top:24px;display:flex;justify-content:space-between;font-fam
   .contact-wrap{grid-template-columns:1fr}
   .contact-info{border-right:0;border-bottom:1px solid var(--line)}
   footer .inner{grid-template-columns:1fr 1fr;gap:32px}
-  .nav-links{display:none}
+
+  /* --- Mobile navigation --- */
+  .nav{padding:0 16px}
+  .nav-inner{padding:8px 8px 8px 16px}
+  .nav-toggle{display:flex}
+  .nav-book{display:none}            /* CTA moves into the dropdown */
+  .nav-right{gap:8px}
+
+  .nav-links{
+    position:absolute;top:calc(100% + 10px);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:2px;
+    background:color-mix(in oklab, var(--paper) 94%, transparent);
+    backdrop-filter:blur(22px) saturate(1.4);
+    -webkit-backdrop-filter:blur(22px) saturate(1.4);
+    border:1px solid color-mix(in oklab, var(--line) 80%, transparent);
+    border-radius:24px;
+    padding:12px;
+    box-shadow:var(--shadow-glass);
+    font-size:18px;
+    /* hidden state */
+    opacity:0;visibility:hidden;transform:translateY(-8px);
+    transition:opacity .28s ease, transform .28s ease, visibility .28s;
+  }
+  .nav.open .nav-links{opacity:1;visibility:visible;transform:translateY(0)}
+  .nav-links a{padding:14px 16px;border-radius:14px;color:var(--ink)}
+  .nav-links a:active,.nav-links a:hover{background:color-mix(in oklab, var(--ink) 6%, transparent)}
+  .nav-links a.nav-book-mobile{
+    display:flex;margin-top:6px;justify-content:center;color:var(--bg);
+  }
+  .nav-links .nav-book-mobile:active,.nav-links .nav-book-mobile:hover{background:var(--accent)}
 }
 @media (max-width:560px){
   .hero{padding:92px 18px 64px}
@@ -871,4 +929,12 @@ footer .colo{margin-top:24px;display:flex;justify-content:space-between;font-fam
   .ig{grid-template-columns:repeat(2,1fr)}
   footer .inner{grid-template-columns:1fr;gap:28px}
   .brand-logo{height:48px}
+}
+/* Phones (vertical hero photo): leave a clear window between the hero card and the stats
+   so the whole arm — and the tattoo dissolving on it — is visible while scrolling;
+   and tighten the empty run below the intro letter. */
+@media (max-width:700px){
+  .hero{padding-bottom:41vh}
+  .intro{min-height:0;padding-top:96px;padding-bottom:36px}
+  .curtain{margin-top:56px}
 }
